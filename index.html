@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>روضة النجوم</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Fredoka+One&display=swap');
+:root{--p:#7C3AED;--b:#3B82F6;--g:#10B981;--o:#F97316;--pk:#EC4899;--y:#F59E0B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:#FFF7ED;overflow-x:hidden;min-height:100vh}
+
+header{
+  background:linear-gradient(135deg,#7C3AED 0%,#EC4899 50%,#F97316 100%);
+  padding:18px 20px 14px;text-align:center;
+  box-shadow:0 4px 20px rgba(124,58,237,.35);
+}
+header h1{font-size:2rem;font-weight:900;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.2)}
+header p{color:rgba(255,255,255,.9);font-size:.95rem;margin-top:4px}
+.hstars{display:flex;justify-content:center;gap:8px;margin-top:8px}
+.hs{font-size:1.4rem;display:inline-block;animation:hs 1.5s ease-in-out infinite}
+.hs:nth-child(2){animation-delay:.2s}.hs:nth-child(3){animation-delay:.4s}
+.hs:nth-child(4){animation-delay:.6s}.hs:nth-child(5){animation-delay:.8s}
+@keyframes hs{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.2)}}
+
+.tabs{display:flex;overflow-x:auto;gap:8px;padding:12px 14px 8px;
+  background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.07);
+  position:sticky;top:0;z-index:100;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:10px 18px;border:none;border-radius:50px;
+  font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:700;
+  cursor:pointer;background:#F3F4F6;color:#6B7280;
+  transition:all .25s;white-space:nowrap}
+.tab:hover{transform:translateY(-2px)}
+.tab.on{color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.t0.on{background:var(--p)}.t1.on{background:var(--b)}.t2.on{background:var(--g)}
+.t3.on{background:var(--o)}.t4.on{background:var(--pk)}.t5.on{background:var(--y)}
+
+.sec{display:none;padding:16px 14px 80px;animation:fi .35s ease}
+.sec.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.mascot-box{text-align:center;padding:14px 0 10px}
+.mascot-icon{font-size:3.8rem;display:inline-block;animation:mf 2.5s ease-in-out infinite}
+@keyframes mf{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.mascot-msg{display:inline-block;margin-top:8px;font-size:.95rem;font-weight:700;
+  color:#fff;background:linear-gradient(135deg,var(--p),var(--pk));
+  padding:8px 20px;border-radius:50px;box-shadow:0 4px 12px rgba(124,58,237,.3)}
+
+.stitle{font-size:1.55rem;font-weight:900;text-align:center;margin-bottom:16px}
+
+.pbar{height:6px;background:#E5E7EB;border-radius:10px;margin-bottom:16px;overflow:hidden}
+.pfill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--p),var(--pk));transition:width .5s ease}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px}
+
+/* Letter card */
+.lcard{border-radius:20px;padding:16px 8px;text-align:center;cursor:pointer;
+  transition:all .22s;box-shadow:0 4px 12px rgba(0,0,0,.08);
+  border:3px solid transparent;user-select:none;position:relative;overflow:hidden}
+.lcard:hover{transform:translateY(-5px) scale(1.04);box-shadow:0 12px 24px rgba(0,0,0,.14)}
+.lcard:active{transform:scale(.94)}
+.lcard.pop{animation:pop .45s ease}
+@keyframes pop{0%{transform:scale(1)}35%{transform:scale(1.18) rotate(-3deg)}70%{transform:scale(1.05) rotate(2deg)}100%{transform:scale(1)}}
+.lcard-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);
+  transform:scale(0);animation:ripple .5s ease-out;pointer-events:none}
+@keyframes ripple{to{transform:scale(4);opacity:0}}
+
+.cl{font-size:2.4rem;font-weight:900;line-height:1}
+.cn{font-size:.8rem;font-weight:800;margin-top:6px;opacity:.85}
+.cw{font-size:.72rem;margin-top:3px;opacity:.65}
+.ce{font-size:1.6rem;margin-top:4px}
+
+/* Number card */
+.ncard{border-radius:20px;padding:18px 10px;text-align:center;cursor:pointer;
+  transition:all .22s;box-shadow:0 4px 12px rgba(0,0,0,.08);user-select:none}
+.ncard:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,.14)}
+.ncard:active{transform:scale(.94)}
+.ncard.pop{animation:pop .45s ease}
+.nb{font-size:2.7rem;font-weight:900;line-height:1}
+.na{font-size:1.9rem;font-weight:900;opacity:.65;line-height:1.2}
+.nd{font-size:.95rem;margin-top:4px;letter-spacing:-1px;min-height:22px}
+.nw{font-size:.78rem;font-weight:800;margin-top:6px;opacity:.75}
+
+/* Shape card */
+.shcard{border-radius:20px;padding:20px 10px;text-align:center;cursor:pointer;
+  background:#fff;transition:all .22s;box-shadow:0 4px 12px rgba(0,0,0,.08);user-select:none}
+.shcard:hover{transform:translateY(-5px) rotate(3deg);box-shadow:0 12px 24px rgba(0,0,0,.14)}
+.shcard:active{transform:scale(.94)}
+.shcard.pop{animation:pop .45s ease}
+.shcard svg{width:68px;height:68px;transition:transform .25s;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+.shcard:hover svg{transform:rotate(15deg) scale(1.1)}
+.sh-ar{font-size:1rem;font-weight:900;margin-top:10px}
+.sh-en{font-size:.78rem;opacity:.6;margin-top:2px}
+
+/* Song card */
+.sgcard{background:#fff;border-radius:20px;padding:18px;margin-bottom:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);border-right:6px solid transparent}
+.sg-hd{display:flex;gap:14px;align-items:center}
+.sg-ic{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:1.9rem;flex-shrink:0}
+.sg-tl{font-size:1.08rem;font-weight:900}
+.sg-sb{font-size:.8rem;opacity:.6;margin-top:2px}
+.lyr{margin-top:14px;padding:14px;border-radius:16px;font-size:.92rem;line-height:2.1;
+  font-weight:700;display:none;animation:fi .3s ease;white-space:pre-line}
+.sg-btns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.bplay{flex:1;padding:11px 16px;border:none;border-radius:50px;
+  font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:800;
+  cursor:pointer;color:#fff;transition:all .2s}
+.bplay:hover{filter:brightness(1.1);transform:scale(1.03)}
+.bplay:active{transform:scale(.96)}
+.blyr{padding:11px 16px;border-radius:50px;font-family:'Tajawal',sans-serif;
+  font-size:.92rem;font-weight:700;cursor:pointer;background:#F3F4F6;color:#374151;border:none}
+.blyr:hover{background:#E5E7EB}
+
+/* Sentence card */
+.stcard{background:#fff;border-radius:20px;padding:16px 18px;margin-bottom:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);cursor:pointer;display:flex;
+  gap:14px;align-items:center;transition:all .22s;border-right:5px solid #E5E7EB}
+.stcard:hover{transform:translateX(-4px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.st-em{font-size:2.4rem;flex-shrink:0}
+.st-ar{font-size:1.05rem;font-weight:800}
+.st-en{font-size:.84rem;opacity:.6;margin-top:4px;direction:ltr;text-align:left}
+
+/* Color classes */
+.cp{background:linear-gradient(135deg,#EDE9FE,#DDD6FE);color:#7C3AED;border-color:#C4B5FD}
+.cb{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);color:#3B82F6;border-color:#93C5FD}
+.cg{background:linear-gradient(135deg,#D1FAE5,#A7F3D0);color:#10B981;border-color:#6EE7B7}
+.co{background:linear-gradient(135deg,#FFEDD5,#FED7AA);color:#F97316;border-color:#FDBA74}
+.ck{background:linear-gradient(135deg,#FCE7F3,#FBCFE8);color:#EC4899;border-color:#F9A8D4}
+.cy{background:linear-gradient(135deg,#FEF9C3,#FDE68A);color:#92400E;border-color:#FCD34D}
+
+/* Karaoke */
+.kara-box{background:#1a1a2e;border-radius:20px;padding:18px;margin-bottom:16px;
+  position:relative;overflow:hidden;min-height:80px;display:flex;align-items:center;justify-content:center}
+.kara-box::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 50%,rgba(124,58,237,.3),transparent 60%),
+             radial-gradient(circle at 70% 50%,rgba(236,72,153,.3),transparent 60%)}
+.kara-text{font-size:1.5rem;font-weight:900;color:#fff;text-align:center;
+  position:relative;z-index:1;line-height:1.6;text-shadow:0 0 20px rgba(255,255,255,.5)}
+.kara-sub{font-size:.9rem;color:rgba(255,255,255,.7);text-align:center;
+  margin-top:6px;position:relative;z-index:1}
+
+/* Toast */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120px);
+  background:linear-gradient(135deg,#1F2937,#374151);color:#fff;
+  padding:12px 24px;border-radius:50px;font-size:.95rem;font-weight:700;
+  z-index:999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:none;white-space:nowrap;
+  max-width:90vw;text-overflow:ellipsis;overflow:hidden}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* Speaking indicator */
+.speak-dot{display:inline-block;width:10px;height:10px;border-radius:50%;
+  background:var(--g);margin-left:6px;animation:blink 1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+
+@media(max-width:400px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  header h1{font-size:1.65rem}
+  .cl{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌟 روضة النجوم 🌟</h1>
+  <p>تعلّم وامرح — الصوت يعمل تلقائياً! 🔊</p>
+  <div class="hstars">
+    <span class="hs">⭐</span><span class="hs">🌙</span>
+    <span class="hs">⭐</span><span class="hs">🌈</span><span class="hs">⭐</span>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab t0 on" onclick="show(0)">🔤 حروف عربية</button>
+  <button class="tab t1" onclick="show(1)">🔡 ABC إنجليزية</button>
+  <button class="tab t2" onclick="show(2)">🔢 الأرقام</button>
+  <button class="tab t3" onclick="show(3)">🔷 الأشكال</button>
+  <button class="tab t4" onclick="show(4)">🎵 الأناشيد</button>
+  <button class="tab t5" onclick="show(5)">💬 جمل قصيرة</button>
+</div>
+
+<!-- ARABIC -->
+<div class="sec on" id="s0">
+  <div class="mascot-box">
+    <div class="mascot-icon">🦁</div><br>
+    <span class="mascot-msg">انقر على الحرف لتسمع اسمه! 🎵</span>
+  </div>
+  <h2 class="stitle" style="color:var(--p)">الحروف العربية ✨</h2>
+  <div class="pbar"><div class="pfill" id="arp" style="width:0%"></div></div>
+  <div class="grid" id="arG"></div>
+</div>
+
+<!-- ENGLISH -->
+<div class="sec" id="s1">
+  <div class="mascot-box">
+    <div class="mascot-icon">🦊</div><br>
+    <span class="mascot-msg">Click a letter to hear it! 🎵</span>
+  </div>
+  <h2 class="stitle" style="color:var(--b)">English Letters ABC 🌟</h2>
+  <div class="grid" id="enG"></div>
+</div>
+
+<!-- NUMBERS -->
+<div class="sec" id="s2">
+  <div class="mascot-box">
+    <div class="mascot-icon">🐸</div><br>
+    <span class="mascot-msg">انقر على الرقم لتسمع اسمه! 🔢</span>
+  </div>
+  <h2 class="stitle" style="color:var(--g)">الأرقام 🔢</h2>
+  <div class="grid" id="numG"></div>
+</div>
+
+<!-- SHAPES -->
+<div class="sec" id="s3">
+  <div class="mascot-box">
+    <div class="mascot-icon">🐧</div><br>
+    <span class="mascot-msg">انقر على الشكل لتعرف اسمه! 🔷</span>
+  </div>
+  <h2 class="stitle" style="color:var(--o)">الأشكال الهندسية 🔷</h2>
+  <div class="grid" id="shG"></div>
+</div>
+
+<!-- SONGS -->
+<div class="sec" id="s4">
+  <div class="mascot-box">
+    <div class="mascot-icon">🎶</div><br>
+    <span class="mascot-msg">اضغط تشغيل لسماع الأنشودة كاملة! 🎵</span>
+  </div>
+  <h2 class="stitle" style="color:var(--pk)">الأناشيد التعليمية 🎵</h2>
+  <!-- Karaoke display -->
+  <div class="kara-box" id="karaBox">
+    <div>
+      <div class="kara-text" id="karaTxt">اختر أنشودة واضغط تشغيل 🎵</div>
+      <div class="kara-sub" id="karaSub">Choose a song and press play</div>
+    </div>
+  </div>
+  <div id="sgL"></div>
+</div>
+
+<!-- SENTENCES -->
+<div class="sec" id="s5">
+  <div class="mascot-box">
+    <div class="mascot-icon">🦋</div><br>
+    <span class="mascot-msg">انقر على الجملة لتسمعها! 💬</span>
+  </div>
+  <h2 class="stitle" style="color:var(--y)">جمل قصيرة 💬</h2>
+  <div id="stL"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ DATA ============
+const AR = [
+  {l:"أ",n:"ألِف",w:"أسد 🦁",c:"cp",say:"ألف"},
+  {l:"ب",n:"باء",w:"بطة 🦆",c:"cb",say:"باء"},
+  {l:"ت",n:"تاء",w:"تفاح 🍎",c:"cg",say:"تاء"},
+  {l:"ث",n:"ثاء",w:"ثعلب 🦊",c:"co",say:"ثاء"},
+  {l:"ج",n:"جيم",w:"جمل 🐪",c:"ck",say:"جيم"},
+  {l:"ح",n:"حاء",w:"حصان 🐴",c:"cy",say:"حاء"},
+  {l:"خ",n:"خاء",w:"خروف 🐑",c:"cp",say:"خاء"},
+  {l:"د",n:"دال",w:"دب 🐻",c:"cb",say:"دال"},
+  {l:"ذ",n:"ذال",w:"ذيل 🦓",c:"cg",say:"ذال"},
+  {l:"ر",n:"راء",w:"ربيع 🌸",c:"co",say:"راء"},
+  {l:"ز",n:"زاي",w:"زرافة 🦒",c:"ck",say:"زاي"},
+  {l:"س",n:"سين",w:"سمكة 🐟",c:"cy",say:"سين"},
+  {l:"ش",n:"شين",w:"شمس",c:"cp",say:"شين"},
+  {l:"ص",n:"صاد",w:"صقر 🦅",c:"cb",say:"صاد"},
+  {l:"ض",n:"ضاد",w:"ضفدع 🐸",c:"cg",say:"ضاد"},
+  {l:"ط",n:"طاء",w:"طاووس 🦚",c:"co",say:"طاء"},
+  {l:"ظ",n:"ظاء",w:"ظبي 🦌",c:"ck",say:"ظاء"},
+  {l:"ع",n:"عين",w:"عنب 🍇",c:"cy",say:"عين"},
+  {l:"غ",n:"غين",w:"غزال 🦌",c:"cp",say:"غين"},
+  {l:"ف",n:"فاء",w:"فيل 🐘",c:"cb",say:"فاء"},
+  {l:"ق",n:"قاف",w:"قمر 🌕",c:"cg",say:"قاف"},
+  {l:"ك",n:"كاف",w:"كلب 🐶",c:"co",say:"كاف"},
+  {l:"ل",n:"لام",w:"ليمون 🍋",c:"ck",say:"لام"},
+  {l:"م",n:"ميم",w:"موزة 🍌",c:"cy",say:"ميم"},
+  {l:"ن",n:"نون",w:"نجمة ⭐",c:"cp",say:"نون"},
+  {l:"ه",n:"هاء",w:"هرة 🐱",c:"cb",say:"هاء"},
+  {l:"و",n:"واو",w:"وردة 🌹",c:"cg",say:"واو"},
+  {l:"ي",n:"ياء",w:"يمامة",c:"co",say:"ياء"},
+];
+
+const EN = [
+  {l:"A",n:"Apple",e:"🍎",c:"cp",say:"A. A for Apple"},
+  {l:"B",n:"Ball",e:"⚽",c:"cb",say:"B. B for Ball"},
+  {l:"C",n:"Cat",e:"🐱",c:"cg",say:"C. C for Cat"},
+  {l:"D",n:"Dog",e:"🐶",c:"co",say:"D. D for Dog"},
+  {l:"E",n:"Elephant",e:"🐘",c:"ck",say:"E. E for Elephant"},
+  {l:"F",n:"Fish",e:"🐟",c:"cy",say:"F. F for Fish"},
+  {l:"G",n:"Giraffe",e:"🦒",c:"cp",say:"G. G for Giraffe"},
+  {l:"H",n:"Hat",e:"🎩",c:"cb",say:"H. H for Hat"},
+  {l:"I",n:"Ice Cream",e:"🍦",c:"cg",say:"I. I for Ice Cream"},
+  {l:"J",n:"Juice",e:"🧃",c:"co",say:"J. J for Juice"},
+  {l:"K",n:"Kite",e:"🪁",c:"ck",say:"K. K for Kite"},
+  {l:"L",n:"Lion",e:"🦁",c:"cy",say:"L. L for Lion"},
+  {l:"M",n:"Moon",e:"🌙",c:"cp",say:"M. M for Moon"},
+  {l:"N",n:"Nest",e:"🪺",c:"cb",say:"N. N for Nest"},
+  {l:"O",n:"Orange",e:"🍊",c:"cg",say:"O. O for Orange"},
+  {l:"P",n:"Parrot",e:"🦜",c:"co",say:"P. P for Parrot"},
+  {l:"Q",n:"Queen",e:"👑",c:"ck",say:"Q. Q for Queen"},
+  {l:"R",n:"Rainbow",e:"🌈",c:"cy",say:"R. R for Rainbow"},
+  {l:"S",n:"Sun",e:"☀",c:"cp",say:"S. S for Sun"},
+  {l:"T",n:"Tree",e:"🌳",c:"cb",say:"T. T for Tree"},
+  {l:"U",n:"Umbrella",e:"☂",c:"cg",say:"U. U for Umbrella"},
+  {l:"V",n:"Violin",e:"🎻",c:"co",say:"V. V for Violin"},
+  {l:"W",n:"Whale",e:"🐋",c:"ck",say:"W. W for Whale"},
+  {l:"X",n:"Xylophone",e:"🎼",c:"cy",say:"X. X for Xylophone"},
+  {l:"Y",n:"Yacht",e:"⛵",c:"cp",say:"Y. Y for Yacht"},
+  {l:"Z",n:"Zebra",e:"🦓",c:"cb",say:"Z. Z for Zebra"},
+];
+
+const NUMS = [
+  {n:0,ar:"٠",d:"",w:"صِفر",bg:"#F9FAFB",tc:"#374151",say:"صفر"},
+  {n:1,ar:"١",d:"●",w:"واحد",bg:"#EDE9FE",tc:"#7C3AED",say:"واحد"},
+  {n:2,ar:"٢",d:"●●",w:"اثنان",bg:"#DBEAFE",tc:"#3B82F6",say:"اثنان"},
+  {n:3,ar:"٣",d:"●●●",w:"ثلاثة",bg:"#D1FAE5",tc:"#10B981",say:"ثلاثة"},
+  {n:4,ar:"٤",d:"●●●●",w:"أربعة",bg:"#FFEDD5",tc:"#F97316",say:"أربعة"},
+  {n:5,ar:"٥",d:"●●●●●",w:"خمسة",bg:"#FCE7F3",tc:"#EC4899",say:"خمسة"},
+  {n:6,ar:"٦",d:"●●●●●●",w:"ستة",bg:"#FEF9C3",tc:"#D97706",say:"ستة"},
+  {n:7,ar:"٧",d:"●●●●●●●",w:"سبعة",bg:"#E0F2FE",tc:"#0EA5E9",say:"سبعة"},
+  {n:8,ar:"٨",d:"●●●●●●●●",w:"ثمانية",bg:"#F3E8FF",tc:"#9333EA",say:"ثمانية"},
+  {n:9,ar:"٩",d:"●●●●●●●●●",w:"تسعة",bg:"#DCFCE7",tc:"#16A34A",say:"تسعة"},
+  {n:10,ar:"١٠",d:"●●●●●●●●●●",w:"عشرة",bg:"#FEE2E2",tc:"#DC2626",say:"عشرة"},
+];
+
+const SH = [
+  {ar:"دائرة",en:"Circle",s:"<circle cx='50' cy='50' r='42' fill='#7C3AED'/>",say:"دائرة، Circle"},
+  {ar:"مربع",en:"Square",s:"<rect x='10' y='10' width='80' height='80' rx='8' fill='#3B82F6'/>",say:"مربع، Square"},
+  {ar:"مثلث",en:"Triangle",s:"<polygon points='50,6 96,94 4,94' fill='#10B981'/>",say:"مثلث، Triangle"},
+  {ar:"نجمة",en:"Star",s:"<polygon points='50,4 61,34 95,34 68,56 79,90 50,69 21,90 32,56 5,34 39,34' fill='#F59E0B'/>",say:"نجمة، Star"},
+  {ar:"قلب",en:"Heart",s:"<path d='M50,83C50,83,10,57,10,33C10,18,22,10,35,10C42,10,49,15,50,20C51,15,58,10,65,10C78,10,90,18,90,33C90,57,50,83,50,83Z' fill='#EC4899'/>",say:"قلب، Heart"},
+  {ar:"مستطيل",en:"Rectangle",s:"<rect x='6' y='26' width='88' height='48' rx='8' fill='#F97316'/>",say:"مستطيل، Rectangle"},
+  {ar:"ماس",en:"Diamond",s:"<polygon points='50,4 96,50 50,96 4,50' fill='#0EA5E9'/>",say:"ماس، Diamond"},
+  {ar:"بيضاوي",en:"Oval",s:"<ellipse cx='50' cy='50' rx='46' ry='28' fill='#8B5CF6'/>",say:"بيضاوي، Oval"},
+];
+
+const SG = [
+  {
+    title:"أنشودة الحروف العربية",sub:"تعلّم الحروف مع الألحان",
+    icon:"🔤",color:"#7C3AED",bg:"#F5F3FF",
+    lang:"ar-SA",
+    lines:[
+      {ar:"أَلِفٌ أَلِفٌ يا أَلِف",en:"Alef, Alef, O Alef"},
+      {ar:"أَلِفٌ مثل أَسَدٍ شريف",en:"Alef is like a noble lion"},
+      {ar:"بَاءٌ بَاءٌ يا بَاء",en:"Ba, Ba, O Ba"},
+      {ar:"بَاءٌ مثل بَطَّةٍ في الماء",en:"Ba is like a duck in water"},
+      {ar:"تَاءٌ تَاءٌ يا تَاء",en:"Ta, Ta, O Ta"},
+      {ar:"تَاءٌ مثل تُفَّاحةٍ حَمراء",en:"Ta is like a red apple"},
+      {ar:"جيمٌ جيمٌ يا جيم",en:"Jeem, Jeem, O Jeem"},
+      {ar:"جيمٌ مثل جَمَلٍ عظيم",en:"Jeem is like a great camel"},
+    ]
+  },
+  {
+    title:"ABC Song",sub:"أنشودة الحروف الإنجليزية",
+    icon:"🔡",color:"#3B82F6",bg:"#EFF6FF",
+    lang:"en-US",
+    lines:[
+      {ar:"A B C D E F G",en:"A B C D E F G"},
+      {ar:"H I J K L M N O P",en:"H I J K L M N O P"},
+      {ar:"Q R S ثم T U V",en:"Q R S, then T U V"},
+      {ar:"W X ثم Y و Z",en:"W X, then Y and Z"},
+      {ar:"الآن أعرف حروف ABC",en:"Now I know my ABCs"},
+      {ar:"هيا نغني معاً من البداية",en:"Next time won't you sing with me!"},
+    ]
+  },
+  {
+    title:"أنشودة الأرقام",sub:"من واحد إلى عشرة",
+    icon:"🔢",color:"#10B981",bg:"#ECFDF5",
+    lang:"ar-SA",
+    lines:[
+      {ar:"واحدٌ واحدٌ واحد",en:"One, one, one"},
+      {ar:"اثنانِ اثنانِ اثنان",en:"Two, two, two"},
+      {ar:"ثلاثةٌ ثلاثة",en:"Three, three, three"},
+      {ar:"أربعةٌ أربعة",en:"Four, four, four"},
+      {ar:"خمسةٌ أصابع في يدي",en:"Five fingers in my hand"},
+      {ar:"ستةٌ سبعةٌ ثمانية",en:"Six, seven, eight"},
+      {ar:"تسعةٌ عشرة نجوم",en:"Nine and ten stars"},
+    ]
+  },
+  {
+    title:"Twinkle Little Star",sub:"نجمتي الصغيرة",
+    icon:"⭐",color:"#F59E0B",bg:"#FFFBEB",
+    lang:"en-US",
+    lines:[
+      {ar:"Twinkle twinkle little star",en:"Twinkle twinkle little star"},
+      {ar:"How I wonder what you are",en:"How I wonder what you are"},
+      {ar:"Up above the world so high",en:"Up above the world so high"},
+      {ar:"Like a diamond in the sky",en:"Like a diamond in the sky"},
+      {ar:"نجمتي الصغيرة كيف تسطعين",en:"My little star, how you shine"},
+      {ar:"في السماء البعيدة تلمعين",en:"You sparkle in the distant sky"},
+    ]
+  },
+];
+
+const ST = [
+  {ar:"صباح الخير!",en:"Good morning!",e:"🌅",sayAr:"صباح الخير",sayEn:"Good morning"},
+  {ar:"مساء الخير!",en:"Good evening!",e:"🌆",sayAr:"مساء الخير",sayEn:"Good evening"},
+  {ar:"كيف حالك؟",en:"How are you?",e:"🙂",sayAr:"كيف حالك",sayEn:"How are you"},
+  {ar:"أنا بخير، شكراً!",en:"I am fine, thank you!",e:"😊",sayAr:"أنا بخير شكرا",sayEn:"I am fine thank you"},
+  {ar:"أنا أحب الدراسة!",en:"I love studying!",e:"📚",sayAr:"أنا أحب الدراسة",sayEn:"I love studying"},
+  {ar:"هذا قلم.",en:"This is a pen.",e:"✏️",sayAr:"هذا قلم",sayEn:"This is a pen"},
+  {ar:"السماء زرقاء.",en:"The sky is blue.",e:"🌤️",sayAr:"السماء زرقاء",sayEn:"The sky is blue"},
+  {ar:"الشمس مشرقة.",en:"The sun is shining.",e:"☀️",sayAr:"الشمس مشرقة",sayEn:"The sun is shining"},
+  {ar:"أحب الفواكه!",en:"I love fruits!",e:"🍎",sayAr:"أحب الفواكه",sayEn:"I love fruits"},
+  {ar:"شكراً جزيلاً!",en:"Thank you very much!",e:"🙏",sayAr:"شكرا جزيلا",sayEn:"Thank you very much"},
+  {ar:"مع السلامة!",en:"Goodbye!",e:"👋",sayAr:"مع السلامة",sayEn:"Goodbye"},
+  {ar:"أنا جائع!",en:"I am hungry!",e:"😋",sayAr:"أنا جائع",sayEn:"I am hungry"},
+  {ar:"هذا كتابي.",en:"This is my book.",e:"📖",sayAr:"هذا كتابي",sayEn:"This is my book"},
+  {ar:"أنا تل
